@@ -1,0 +1,710 @@
+{
+	"info": {
+		"_postman_id": "48aec064-acf3-4853-b4c1-da63fefe6f44",
+		"name": "Binance Pay API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Order",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "BinancePay-Timestamp",
+						"type": "text",
+						"value": "{{timestamp}}"
+					},
+					{
+						"key": "BinancePay-Nonce",
+						"type": "text",
+						"value": "{{nonce}}"
+					},
+					{
+						"key": "BinancePay-Certificate-SN",
+						"type": "text",
+						"value": "{{binance-api-key}}"
+					},
+					{
+						"key": "BinancePay-Signature",
+						"type": "text",
+						"value": "{{signature}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"merchantId\": \"1111\",\n    \"merchantTradeNo\": \"2222\",\n    \"tradeType\": \"WEB\",\n    \"totalFee\": \"1\",\n    \"currency\": \"USDT\",\n    \"productType\": \"Fruit\",\n    \"productName\": \"Apple\",\n    \"productDetail\": \"Green Apple\"\n}\n\n/**\n   * Create order API used for merchant/partner to initiate acquiring order.\n   *\n   * POST /binancepay/openapi/order\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-order-create}\n   *\n   * @param {long} merchantId\n   * @param {long} subMerchantId\n   * @param {string} merchantTradeNo\n   * @param {string} tradeType\n   * @param {decimal} totalFee\n   * @param {string} currency\n   * @param {string} productType\n   * @param {string} productName\n   * @param {string} productDetail\n   * @param {string} returnUrl\n   */",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/binancepay/openapi/order",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"binancepay",
+						"openapi",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query Order",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "BinancePay-Timestamp",
+						"value": "{{timestamp}}",
+						"type": "text"
+					},
+					{
+						"key": "BinancePay-Nonce",
+						"value": "{{nonce}}",
+						"type": "text"
+					},
+					{
+						"key": "BinancePay-Certificate-SN",
+						"value": "{{binance-api-key}}",
+						"type": "text"
+					},
+					{
+						"key": "BinancePay-Signature",
+						"value": "{{signature}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"merchantId\":\"1111\",\n    \"merchantTradeNo\":\"2222\"\n}\n\n/**\n   * Query order API used for merchant/partner to query order status\n   *\n   * POST /binancepay/openapi/order/query\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-order-query}\n   *\n   * @param {long} merchantId\n   * @param {long} subMerchantId\n   * @param {string} merchantTradeNo\n   * @param {string} prepayId\n   */",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/binancepay/openapi/order/query",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"binancepay",
+						"openapi",
+						"order",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Close Order",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "BinancePay-Timestamp",
+						"type": "text",
+						"value": "{{timestamp}}"
+					},
+					{
+						"key": "BinancePay-Nonce",
+						"type": "text",
+						"value": "{{nonce}}"
+					},
+					{
+						"key": "BinancePay-Certificate-SN",
+						"type": "text",
+						"value": "{{binance-api-key}}"
+					},
+					{
+						"key": "BinancePay-Signature",
+						"type": "text",
+						"value": "{{signature}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"merchantId\":\"1111\",\n    \"merchantTradeNo\":\"2222\"\n}\n\n/**\n   * Close order API used for merchant/partner to close order without any prior payment activities triggered by user. The successful close result will be*notified asynchronously through Order Notification Webhook with bizStatus = \"PAY_CLOSED\"\n   *\n   * POST /binancepay/openapi/order/close\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-order-close}\n   *\n   * @param {long} merchantId\n   * @param {long} subMerchantId\n   * @param {string} merchantTradeNo\n   * @param {string} prepayId\n   */",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/binancepay/openapi/order/close",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"binancepay",
+						"openapi",
+						"order",
+						"close"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transfer Fund",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "BinancePay-Timestamp",
+						"type": "text",
+						"value": "{{timestamp}}"
+					},
+					{
+						"key": "BinancePay-Nonce",
+						"type": "text",
+						"value": "{{nonce}}"
+					},
+					{
+						"key": "BinancePay-Certificate-SN",
+						"type": "text",
+						"value": "{{binance-api-key}}"
+					},
+					{
+						"key": "BinancePay-Signature",
+						"type": "text",
+						"value": "{{signature}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestId\":\"1111\",\n    \"merchantId\": \"111\",\n    \"currency\": \"USDT\",\n    \"amount\": \"10.00\",\n    \"transferType\":\"TO_MAIN\"\n}\n\n/**\n   * Fund transfer API used for merchant/partner to initiate Fund transfer between wallets.\n   *\n   * POST /binancepay/openapi/wallet/transfer\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-wallet-transfer}\n   *\n   * @param {string} requestId\n   * @param {long} subMerchantId\n   * @param {string} merchantTradeNo\n   * @param {string} prepayId\n   */",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/binancepay/openapi/wallet/transfer",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"binancepay",
+						"openapi",
+						"wallet",
+						"transfer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create SubMerchant",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "BinancePay-Timestamp",
+						"type": "text",
+						"value": "{{timestamp}}"
+					},
+					{
+						"key": "BinancePay-Nonce",
+						"type": "text",
+						"value": "{{nonce}}"
+					},
+					{
+						"key": "BinancePay-Certificate-SN",
+						"type": "text",
+						"value": "{{binance-api-key}}"
+					},
+					{
+						"key": "BinancePay-Signature",
+						"type": "text",
+						"value": "{{signature}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"mainMerchantId\": 350945884,\n    \"merchantName\": \"Individual\",\n    \"merchantType\": 1,\n    \"merchantMcc\": \"5511\",\n    \"brandLogo\": null,\n    \"country\": \"CN,US\",\n    \"address\": null,\n    \"companyName\": null,\n    \"registrationNumber\": null,\n    \"registrationCountry\": null,\n    \"registrationAddress\": null,\n    \"incorporationDate\": null,\n    \"storeType\": null,\n    \"siteType\": null,\n    \"siteUrl\": null,\n    \"siteName\": null,\n    \"certificateType\": 1,\n    \"certificateCountry\": \"US\",\n    \"certificateNumber\": \"123456X\",\n    \"certificateValidDate\": 1752422400000,\n    \"contractTimeIsv\": 1594656000000\n}\n\n\n/**\n   * Create Sub-merchant API used for merchant/partner.\n   *\n   * POST /binancepay/openapi/submerchant/add\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-submerchant-add}\n   *\n   * @param {string} mainMerchantId\n   * @param {string} merchantName\n   * @param {integer} merchantType\n   * @param {string} merchantMcc\n   * @param {string} brandLogo\n   * @param {string} country\n   * @param {string} address\n   * @param {string} companyName\n   * @param {string} registrationNumber\n   * @param {string} registrationCountry\n   * @param {string} registrationAddress\n   * @param {long} incorporationDate\n   * @param {integer} storeType\n   * @param {integer} siteType\n   * @param {string} siteUrl\n   * @param {string} siteName\n   * @param {integer} certificateType\n   * @param {string} certificateCountry\n   * @param {string} certificateNumber\n   * @param {long} certificateValidDate\n   * @param {long} contractTimeIsv\n   */",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/binancepay/openapi/submerchant/add",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"binancepay",
+						"openapi",
+						"submerchant",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refund Order",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "BinancePay-Timestamp",
+						"type": "text",
+						"value": "{{timestamp}}"
+					},
+					{
+						"key": "BinancePay-Nonce",
+						"type": "text",
+						"value": "{{nonce}}"
+					},
+					{
+						"key": "BinancePay-Certificate-SN",
+						"type": "text",
+						"value": "{{binance-api-key}}"
+					},
+					{
+						"key": "BinancePay-Signature",
+						"type": "text",
+						"value": "{{signature}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"refundRequestId\": \"68711039982968832\",\n    \"prepayId\": \"383729303729303\",\n    \"refundAmount\": 25.17,\n    \"refundReason\": \"\"\n}\n\n\n/**\n   * Refund order API used for Marchant/Partner to refund for a successful payment.\n   *\n   * POST /binancepay/openapi/order/refund\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-order-refund}\n   *\n   * @param {string} refundRequestId\n   * @param {string} prepayId\n   * @param {decimal} refundAmount\n   * @param {string} refundReason\n   */",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/binancepay/openapi/order/refund",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"binancepay",
+						"openapi",
+						"order",
+						"refund"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query Refund Order",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "BinancePay-Timestamp",
+						"type": "text",
+						"value": "{{timestamp}}"
+					},
+					{
+						"key": "BinancePay-Nonce",
+						"type": "text",
+						"value": "{{nonce}}"
+					},
+					{
+						"key": "BinancePay-Certificate-SN",
+						"type": "text",
+						"value": "{{binance-api-key}}"
+					},
+					{
+						"key": "BinancePay-Signature",
+						"type": "text",
+						"value": "{{signature}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"refundRequestId\": \"68711039982968832\"\n}\n\n\n/**\n   * Refund order API used for Marchant/Partner to refund for a successful payment.\n   *\n   * POST /binancepay/openapi/order/refund\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-order-refund-query}\n   *\n   * @param {string} refundRequestId\n   */",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/binancepay/openapi/order/refund/query",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"binancepay",
+						"openapi",
+						"order",
+						"refund",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Batch Payout",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "BinancePay-Timestamp",
+						"type": "text",
+						"value": "{{timestamp}}"
+					},
+					{
+						"key": "BinancePay-Nonce",
+						"type": "text",
+						"value": "{{nonce}}"
+					},
+					{
+						"key": "BinancePay-Certificate-SN",
+						"type": "text",
+						"value": "{{binance-api-key}}"
+					},
+					{
+						"key": "BinancePay-Signature",
+						"type": "text",
+						"value": "{{signature}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestId\": \"samplerequest1234\",\n    \"merchantId\": 32131,\n    \"batchName\": \"sample batch\",\n    \"currency\": \"BUSD\",\n    \"totalAmount\": 200.4,\n    \"totalNumber\": 2,\n    \"bizScene\": \"SETTLEMENT\",\n    \"transferDetailList\": [\n        {\n            \"merchantSendId\": \"21231313131\",\n            \"transferAmount\": 110.3,\n            \"receiveType\": \"PAY_ID\",\n            \"transferMethod\": \"SPOT_WALLET\",\n            \"receiver\": \"354205155\",\n            \"remark\": \"test1\"\n        },\n        {\n            \"merchantSendId\": \"21231313132\",\n            \"transferAmount\": 90.1,\n            \"receiveType\": \"PAY_ID\",\n            \"transferMethod\": \"SPOT_WALLET\",\n            \"receiver\": \"354205153\",\n            \"remark\": \"test2\"\n        }\n    ]\n}\n/**\n   * Payout API used for Merchant/Partner to make transfers in batch.\n   *\n   * POST /binancepay/openapi/payout/transfer\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-payout}\n   *\n   * @param {string} requestId\n   * @param {string} bizScene\n   * @param {string} batchName\n   * @param {string} currency\n   * @param {decimal} totalAmount\n   * @param {integer} totalNumber\n   * @param {list} transferDetailList\n   */",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/binancepay/openapi/payout/transfer",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"binancepay",
+						"openapi",
+						"payout",
+						"transfer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Wallet Balance Query",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "BinancePay-Timestamp",
+						"type": "text",
+						"value": "{{timestamp}}"
+					},
+					{
+						"key": "BinancePay-Nonce",
+						"type": "text",
+						"value": "{{nonce}}"
+					},
+					{
+						"key": "BinancePay-Certificate-SN",
+						"type": "text",
+						"value": "{{binance-api-key}}"
+					},
+					{
+						"key": "BinancePay-Signature",
+						"type": "text",
+						"value": "{{signature}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"wallet\": \"SPOT_WALLET\",\n    \"currency\": \"BUSD\"\n}\n\n\n/**\n   * API used to query wallet balance.\n   *\n   * POST /binancepay/openapi/balance\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-balance-query}\n   *\n   * @param {string} wallet\n   * @param {string} currency\n   */",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/binancepay/openapi/balance",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"binancepay",
+						"openapi",
+						"balance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Payout Query",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "BinancePay-Timestamp",
+						"type": "text",
+						"value": "{{timestamp}}"
+					},
+					{
+						"key": "BinancePay-Nonce",
+						"type": "text",
+						"value": "{{nonce}}"
+					},
+					{
+						"key": "BinancePay-Certificate-SN",
+						"type": "text",
+						"value": "{{binance-api-key}}"
+					},
+					{
+						"key": "BinancePay-Signature",
+						"type": "text",
+						"value": "{{signature}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n     \"requestId\":\"payouttransfer19998\"\n}\n\n\n/**\n   * Payout query API used for Merchant/Partner to query transfer status.\n   *\n   * POST /binancepay/openapi/payout/query\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-payout-query}\n   *\n   * @param {string} requestId\n   */",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/binancepay/openapi/payout/query",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"binancepay",
+						"openapi",
+						"payout",
+						"query"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"const binance_api_secret = pm.environment.get(\"binance-api-secret\");",
+					"const timestamp  = Date.now();",
+					"pm.environment.set(\"timestamp\", timestamp);",
+					"const nonce = CryptoJS.lib.WordArray.random(128 / 8).toString()",
+					"pm.environment.set(\"nonce\", nonce);",
+					"",
+					"// only support in raw body",
+					"const body = pm.request.body.raw;",
+					"",
+					"const payload_to_sign = timestamp + '\\n' + nonce + '\\n' + body + '\\n';",
+					"console.log(\"payload for sign\", payload_to_sign)",
+					"const signature = CryptoJS.HmacSHA512(payload_to_sign, binance_api_secret).toString().toUpperCase();",
+					"pm.environment.set(\"signature\", signature);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
