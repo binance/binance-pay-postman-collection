@@ -45,7 +45,7 @@ You haven't imported the environment file or you've imported it but haven't sele
 - Open the Postman's console to find requests' parameters and URL.
 - Debugging can be done by editing the `Pre-request Script` tab.
 
-**Q:** Error `Invalid API-key, IP, or permissions for action, request ip: xx.xx.xx.xx`
+**Q:** Error `Mandatory parameter 'xxxx' was not sent, was empty/null, or malformed.`
 
 Likely causes:
 - API key is not set.
@@ -59,7 +59,7 @@ Likely causes:
 - Request was made with at least one empty parameter.
 - `signature` is not the last parameter in the parameters list.
 
-**Q:** Error `Mandatory parameter 'xxxx' was not sent, was empty/null, or malformed.`
+**Q:** Error `A mandatory parameter was not sent, was empty/null, or malformed.`
 
 Please refer to the API documentation to double check all the mandatory parameters.
 

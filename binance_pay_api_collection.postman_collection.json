@@ -273,6 +273,74 @@
 			"response": []
 		},
 		{
+			"name": "Query Transfer Result",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "BinancePay-Timestamp",
+						"type": "text",
+						"value": "{{timestamp}}"
+					},
+					{
+						"key": "BinancePay-Nonce",
+						"type": "text",
+						"value": "{{nonce}}"
+					},
+					{
+						"key": "BinancePay-Certificate-SN",
+						"type": "text",
+						"value": "{{binance-api-key}}"
+					},
+					{
+						"key": "BinancePay-Signature",
+						"type": "text",
+						"value": "{{signature}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tranId\":\"1111\"\n}\n\n/**\n   * Query Transfer Result API used for merchant/partner to query transfer result.\n   *\n   * POST /binancepay/openapi/wallet/transfer/query\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-wallet-transfer-query}\n   *\n   * @param {string} tranId\n   */",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/binancepay/openapi/wallet/transfer/query",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"binancepay",
+						"openapi",
+						"wallet",
+						"transfer",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Create SubMerchant",
 			"event": [
 				{
