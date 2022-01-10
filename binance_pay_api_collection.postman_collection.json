@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "48aec064-acf3-4853-b4c1-da63fefe6f44",
+		"_postman_id": "1923f231-cef6-4103-a123-ada6bb94b25e",
 		"name": "Binance Pay API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -50,7 +50,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"merchantId\": \"1111\",\n    \"merchantTradeNo\": \"2222\",\n    \"tradeType\": \"WEB\",\n    \"totalFee\": \"1\",\n    \"currency\": \"USDT\",\n    \"productType\": \"Fruit\",\n    \"productName\": \"Apple\",\n    \"productDetail\": \"Green Apple\"\n}\n\n/**\n   * Create order API used for merchant/partner to initiate acquiring order.\n   *\n   * POST /binancepay/openapi/order\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-order-create}\n   *\n   * @param {long} merchantId\n   * @param {long} subMerchantId\n   * @param {string} merchantTradeNo\n   * @param {string} tradeType\n   * @param {decimal} totalFee\n   * @param {string} currency\n   * @param {string} productType\n   * @param {string} productName\n   * @param {string} productDetail\n   * @param {string} returnUrl\n   */",
+					"raw": "{\n   \"env\":\n   {\n      \"terminalType\":\"MINI_PROGRAM\"\n   },\n   \"merchantTradeNo\":\"2223\",\n   \"orderAmount\": 1.00,\n   \"currency\":\"USDT\",\n   \"goods\":\n   {\n      \"goodsType\":\"01\",\n      \"goodsCategory\":\"0000\",\n      \"referenceGoodsId\":\"abc001\",\n      \"goodsName\":\"apple\",\n      \"goodsUnitAmount\":\n      {\n         \"currency\":\"USDT\",\n         \"amount\":1.00\n      }\n   },\n   \"shipping\":\n   {\n      \"shippingName\":\n      {\n         \"firstName\":\"Joe\",\n         \"lastName\":\"Don\"\n      },\n      \"shippingAddress\":\n      {\n         \"region\":\"NZ\"\n      }\n   },\n   \"buyer\":\n   {\n      \"buyerName\":\n      {\n         \"firstName\":\"cz\",\n         \"lastName\":\"zhao\"\n      }\n   }\n}\n\n\n/**\n   * Create order API Version 2 used for merchant/partner to initiate acquiring order.\n   *\n   * POST /binancepay/openapi/v2/order\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-order-create-v2}\n   *\n   * @param {string} merchant.subMerchantId\n   * @param {string} env.terminalType\n   * @param {string} env.osType\n   * @param {string} env.orderClientIp\n   * @param {string} env.cookieId\n   * @param {string} merchantTradeNo\n   * @param {decimal} orderAmount\n   * @param {string} currency\n   * @param {string} goods.goodsType\n   * @param {string} goods.goodsCategory\n   * @param {string} goods.referenceGoodsId\n   * @param {string} goods.goodsName\n   * @param {string} goods.goodsDetail\n   * @param {string} goods.goodsUnitAmount.currency\n   * @param {decimal} goods.goodsUnitAmount.amount\n   * @param {string} goods.goodsQuantity\n   * @param {string} shipping.shippingName.firstName\n   * @param {string} shipping.shippingName.middleName\n   * @param {string} shipping.shippingName.lastName\n   * @param {string} shipping.shippingAddress.region\n   * @param {string} shipping.shippingAddress.state\n   * @param {string} shipping.shippingAddress.city\n   * @param {string} shipping.shippingAddress.address\n   * @param {string} shipping.shippingAddress.zipCode\n   * @param {string} shipping.shippingAddress.shippingAddressType\n   * @param {string} shipping.shippingPhoneNo\n   * @param {string} buyer.referenceBuyerId\n   * @param {string} buyer.buyerName.firstName\n   * @param {string} buyer.buyerName.middleName\n   * @param {string} buyer.buyerName.lastName\n   * @param {string} buyer.buyerPhoneCountryCode\n   * @param {string} buyer.buyerPhoneNo\n   * @param {string} buyer.buyerEmail\n   * @param {long} buyer.buyerRegistrationTime\n   * @param {string} buyer.buyerBrowserLanguage\n   * @param {string} returnUrl\n   * @param {string} cancelUrl\n   * @param {long} orderExpireTime\n   * @param {string} supportPayCurrency\n   * @param {string} appId\n   */",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -58,13 +58,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/binancepay/openapi/order",
+					"raw": "{{url}}/binancepay/openapi/v2/order",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"binancepay",
 						"openapi",
+						"v2",
 						"order"
 					]
 				}
@@ -116,7 +117,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"merchantId\":\"1111\",\n    \"merchantTradeNo\":\"2222\"\n}\n\n/**\n   * Query order API used for merchant/partner to query order status\n   *\n   * POST /binancepay/openapi/order/query\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-order-query}\n   *\n   * @param {long} merchantId\n   * @param {long} subMerchantId\n   * @param {string} merchantTradeNo\n   * @param {string} prepayId\n   */",
+					"raw": "{\n    \"merchantTradeNo\":\"2222\"\n}\n\n/**\n   * Query order API used for merchant/partner to query order status\n   *\n   * POST /binancepay/openapi/order/query\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-order-query}\n   *\n   * @param {string} merchantTradeNo\n   * @param {string} prepayId\n   */",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -124,13 +125,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/binancepay/openapi/order/query",
+					"raw": "{{url}}/binancepay/openapi/v2/order/query",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"binancepay",
 						"openapi",
+						"v2",
 						"order",
 						"query"
 					]
@@ -183,7 +185,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"merchantId\":\"1111\",\n    \"merchantTradeNo\":\"2222\"\n}\n\n/**\n   * Close order API used for merchant/partner to close order without any prior payment activities triggered by user. The successful close result will be*notified asynchronously through Order Notification Webhook with bizStatus = \"PAY_CLOSED\"\n   *\n   * POST /binancepay/openapi/order/close\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-order-close}\n   *\n   * @param {long} merchantId\n   * @param {long} subMerchantId\n   * @param {string} merchantTradeNo\n   * @param {string} prepayId\n   */",
+					"raw": "{\n    \"merchantTradeNo\":\"2222\"\n}\n\n/**\n   * Close order API used for merchant/partner to close order without any prior payment activities triggered by user. The successful close result will be*notified asynchronously through Order Notification Webhook with bizStatus = \"PAY_CLOSED\"\n   *\n   * POST /binancepay/openapi/order/close\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-order-close}\n   *\n   * @param {string} merchantTradeNo\n   * @param {string} prepayId\n   */",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -250,7 +252,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"requestId\":\"1111\",\n    \"merchantId\": \"111\",\n    \"currency\": \"USDT\",\n    \"amount\": \"10.00\",\n    \"transferType\":\"TO_MAIN\"\n}\n\n/**\n   * Fund transfer API used for merchant/partner to initiate Fund transfer between wallets.\n   *\n   * POST /binancepay/openapi/wallet/transfer\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-wallet-transfer}\n   *\n   * @param {string} requestId\n   * @param {long} subMerchantId\n   * @param {string} merchantTradeNo\n   * @param {string} prepayId\n   */",
+					"raw": "{\n    \"requestId\":\"1111\",\n    \"currency\": \"USDT\",\n    \"amount\": \"10.00\",\n    \"transferType\":\"TO_MAIN\"\n}\n\n/**\n   * Fund transfer API used for merchant/partner to initiate Fund transfer between wallets.\n   *\n   * POST /binancepay/openapi/wallet/transfer\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-wallet-transfer}\n   *\n   * @param {string} requestId\n   * @param {string} currency\n   * @param {string} amount\n   * @param {string} transferType\n   */",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -317,7 +319,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"tranId\":\"1111\"\n}\n\n/**\n   * Query Transfer Result API used for merchant/partner to query transfer result.\n   *\n   * POST /binancepay/openapi/wallet/transfer/query\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-wallet-transfer-query}\n   *\n   * @param {string} tranId\n   */",
+					"raw": "{\n    \"tranId\":\"123456\"\n}\n\n/**\n   * Query Transfer Result API used for merchant/partner to query transfer result.\n   *\n   * POST /binancepay/openapi/wallet/transfer/query\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-wallet-transfer-query}\n   *\n   * @param {string} tranId\n   */",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -385,7 +387,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"mainMerchantId\": 350945884,\n    \"merchantName\": \"Individual\",\n    \"merchantType\": 1,\n    \"merchantMcc\": \"5511\",\n    \"brandLogo\": null,\n    \"country\": \"CN,US\",\n    \"address\": null,\n    \"companyName\": null,\n    \"registrationNumber\": null,\n    \"registrationCountry\": null,\n    \"registrationAddress\": null,\n    \"incorporationDate\": null,\n    \"storeType\": null,\n    \"siteType\": null,\n    \"siteUrl\": null,\n    \"siteName\": null,\n    \"certificateType\": 1,\n    \"certificateCountry\": \"US\",\n    \"certificateNumber\": \"123456X\",\n    \"certificateValidDate\": 1752422400000,\n    \"contractTimeIsv\": 1594656000000\n}\n\n\n/**\n   * Create Sub-merchant API used for merchant/partner.\n   *\n   * POST /binancepay/openapi/submerchant/add\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-submerchant-add}\n   *\n   * @param {string} mainMerchantId\n   * @param {string} merchantName\n   * @param {integer} merchantType\n   * @param {string} merchantMcc\n   * @param {string} brandLogo\n   * @param {string} country\n   * @param {string} address\n   * @param {string} companyName\n   * @param {string} registrationNumber\n   * @param {string} registrationCountry\n   * @param {string} registrationAddress\n   * @param {long} incorporationDate\n   * @param {integer} storeType\n   * @param {integer} siteType\n   * @param {string} siteUrl\n   * @param {string} siteName\n   * @param {integer} certificateType\n   * @param {string} certificateCountry\n   * @param {string} certificateNumber\n   * @param {long} certificateValidDate\n   * @param {long} contractTimeIsv\n   */",
+					"raw": "{\n    \"merchantName\": \"Individual\",\n    \"merchantType\": 1,\n    \"merchantMcc\": \"5511\",\n    \"brandLogo\": null,\n    \"country\": \"CN,US\",\n    \"address\": null,\n    \"companyName\": null,\n    \"registrationNumber\": null,\n    \"registrationCountry\": null,\n    \"registrationAddress\": null,\n    \"incorporationDate\": null,\n    \"storeType\": null,\n    \"siteType\": null,\n    \"siteUrl\": null,\n    \"siteName\": null,\n    \"certificateType\": 1,\n    \"certificateCountry\": \"US\",\n    \"certificateNumber\": \"123456X\",\n    \"certificateValidDate\": 1752422400000,\n    \"contractTimeIsv\": 1594656000000\n}\n\n\n/**\n   * Create Sub-merchant API used for merchant/partner.\n   *\n   * POST /binancepay/openapi/submerchant/add\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-submerchant-add}\n   *\n   * @param {string} merchantName\n   * @param {integer} merchantType\n   * @param {string} merchantMcc\n   * @param {string} brandLogo\n   * @param {string} country\n   * @param {string} address\n   * @param {string} companyName\n   * @param {string} registrationNumber\n   * @param {string} registrationCountry\n   * @param {string} registrationAddress\n   * @param {long} incorporationDate\n   * @param {integer} storeType\n   * @param {integer} siteType\n   * @param {string} siteUrl\n   * @param {string} siteName\n   * @param {integer} certificateType\n   * @param {string} certificateCountry\n   * @param {string} certificateNumber\n   * @param {long} certificateValidDate\n   * @param {long} contractTimeIsv\n   */",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -587,7 +589,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"requestId\": \"samplerequest1234\",\n    \"merchantId\": 32131,\n    \"batchName\": \"sample batch\",\n    \"currency\": \"BUSD\",\n    \"totalAmount\": 200.4,\n    \"totalNumber\": 2,\n    \"bizScene\": \"SETTLEMENT\",\n    \"transferDetailList\": [\n        {\n            \"merchantSendId\": \"21231313131\",\n            \"transferAmount\": 110.3,\n            \"receiveType\": \"PAY_ID\",\n            \"transferMethod\": \"SPOT_WALLET\",\n            \"receiver\": \"354205155\",\n            \"remark\": \"test1\"\n        },\n        {\n            \"merchantSendId\": \"21231313132\",\n            \"transferAmount\": 90.1,\n            \"receiveType\": \"PAY_ID\",\n            \"transferMethod\": \"SPOT_WALLET\",\n            \"receiver\": \"354205153\",\n            \"remark\": \"test2\"\n        }\n    ]\n}\n/**\n   * Payout API used for Merchant/Partner to make transfers in batch.\n   *\n   * POST /binancepay/openapi/payout/transfer\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-payout}\n   *\n   * @param {string} requestId\n   * @param {string} bizScene\n   * @param {string} batchName\n   * @param {string} currency\n   * @param {decimal} totalAmount\n   * @param {integer} totalNumber\n   * @param {list} transferDetailList\n   */",
+					"raw": "{\n    \"requestId\": \"samplerequest1234\",\n    \"batchName\": \"sample batch\",\n    \"currency\": \"BUSD\",\n    \"totalAmount\": 200.4,\n    \"totalNumber\": 2,\n    \"bizScene\": \"SETTLEMENT\",\n    \"transferDetailList\": [\n        {\n            \"merchantSendId\": \"21231313131\",\n            \"transferAmount\": 110.3,\n            \"receiveType\": \"PAY_ID\",\n            \"transferMethod\": \"SPOT_WALLET\",\n            \"receiver\": \"354205155\",\n            \"remark\": \"test1\"\n        },\n        {\n            \"merchantSendId\": \"21231313132\",\n            \"transferAmount\": 90.1,\n            \"receiveType\": \"PAY_ID\",\n            \"transferMethod\": \"SPOT_WALLET\",\n            \"receiver\": \"354205153\",\n            \"remark\": \"test2\"\n        }\n    ]\n}\n/**\n   * Payout API used for Merchant/Partner to make transfers in batch.\n   *\n   * POST /binancepay/openapi/payout/transfer\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-payout}\n   *\n   * @param {string} requestId\n   * @param {string} bizScene\n   * @param {string} batchName\n   * @param {string} currency\n   * @param {decimal} totalAmount\n   * @param {integer} totalNumber\n   * @param {list} transferDetailList\n   */",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -720,7 +722,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n     \"requestId\":\"payouttransfer19998\"\n}\n\n\n/**\n   * Payout query API used for Merchant/Partner to query transfer status.\n   *\n   * POST /binancepay/openapi/payout/query\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-payout-query}\n   *\n   * @param {string} requestId\n   */",
+					"raw": "{\n     \"requestId\":\"payouttransfer19998\"\n}\n\n\n/**\n   * Payout query API used for Merchant/Partner to query transfer status.\n   *\n   * POST /binancepay/openapi/payout/query\n   *\n   * {@link https://developers.binance.com/docs/binance-pay/api-payout-query}\n   *\n   * @param {string} requestId\n   * @param {string} detailStatus\n   */",
 					"options": {
 						"raw": {
 							"language": "json"
